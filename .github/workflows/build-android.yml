@@ -28,6 +28,9 @@ jobs:
           yes | "$SDKMANAGER" --licenses
           "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0" "cmake;3.22.1" "ndk;28.2.13676358"
 
+      - name: Install host tools
+        run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
+
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon --stacktrace
