@@ -19,6 +19,8 @@ def chiakiVersionPatch = grepVersionComponent(rootCMakeListsContent, "CHIAKI_VER
 def chiakiVersion = "$chiakiVersionMajor.$chiakiVersionMinor.$chiakiVersionPatch"
 println("Determined Chiaki Version: $chiakiVersion")
 
+archivesBaseName = "chiaki-tv"
+
 android {
     namespace "com.metallic.chiaki"
     compileSdk 35
