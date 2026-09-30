@@ -121,4 +121,6 @@
     <string name="preferences_fps_key">stream_fps</string>
     <string name="preferences_bitrate_key">stream_bitrate</string>
     <string name="preferences_codec_key">stream_codec</string>
+    <string name="preferences_on_screen_controls_title">On-screen controls</string>
+    <string name="preferences_on_screen_controls_summary">Show touch buttons during stream (turn off for TV)</string>
 </resources>

@@ -4,6 +4,7 @@ package com.metallic.chiaki.common
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import androidx.annotation.StringRes
 import androidx.preference.PreferenceManager
 import com.metallic.chiaki.R
@@ -19,6 +20,7 @@ import kotlin.math.min
 
 class Preferences(context: Context)
 {
+	private val appContext = context.applicationContext
 	enum class Resolution(val value: String, @StringRes val title: Int, val preset: VideoResolutionPreset)
 	{
 		RES_360P("360p", R.string.preferences_resolution_title_360p, VideoResolutionPreset.RES_360P),
@@ -66,7 +68,10 @@ class Preferences(context: Context)
 
 	val onScreenControlsEnabledKey get() = resources.getString(R.string.preferences_on_screen_controls_enabled_key)
 	var onScreenControlsEnabled
-		get() = sharedPreferences.getBoolean(onScreenControlsEnabledKey, true)
+		get() = if(sharedPreferences.contains(onScreenControlsEnabledKey))
+			sharedPreferences.getBoolean(onScreenControlsEnabledKey, true)
+		else
+			!appContext.packageManager.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
 		set(value) { sharedPreferences.edit().putBoolean(onScreenControlsEnabledKey, value).apply() }
 
 	val touchpadOnlyEnabledKey get() = resources.getString(R.string.preferences_touchpad_only_enabled_key)
